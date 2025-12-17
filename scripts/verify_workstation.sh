@@ -197,9 +197,9 @@ echo
 info "Hardening"
 if has ufw; then
   ok "ufw present"
-  sudo -n true >/dev/null 2>&1 && {
+  if sudo -v; then {
     if sudo ufw status | grep -qi "Status: active"; then ok "ufw is active"; else warn "ufw is installed but not active"; fi
-  } || warn "Cannot check ufw status without sudo privileges"
+  }; else warn "Cannot check ufw status without sudo privileges"; fi
 else
   warn "ufw missing"
 fi
