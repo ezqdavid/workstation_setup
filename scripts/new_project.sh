@@ -295,19 +295,22 @@ EOT
     ;;
 
   data)
+    PKG_NAME="$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g; s/^_+|_+$//g')"
     # data == python + dbt + devstack by default
-    mkdir -p src tests
-    cat > pyproject.toml <<'EOT'
+    mkdir -p "src/$PKG_NAME" tests
+    cat > pyproject.toml <<EOT
 [tool.poetry]
-name = "data"
+name = "$NAME"
 version = "0.1.0"
 description = ""
 authors = ["You <you@example.com>"]
-packages = [{ include = "src" }]
+readme = "README.md"
+packages = [{ include = "$PKG_NAME", from = "src" }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.13"
 pandas = "*"
+pyarrow = "*"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "*"
@@ -322,14 +325,17 @@ line-length = 100
 line-length = 100
 EOT
 
-    cat > README.md <<'EOT'
-# Data project
+    cat > "src/$PKG_NAME/__init__.py" <<'EOT'
+__all__ = []
+EOT
+
+    cat > README.md <<EOT
+# $NAME (Data)
 
 Includes:
 - Poetry + src layout
 - Optional devstack (Postgres/Mongo/ClickHouse)
 - Optional dbt stub
-
 EOT
     WITH_DEVSTACK=1
     WITH_DBT=1
