@@ -10,6 +10,7 @@ mkdir -p "$HOME/.local/bin"
 
 # Install Poetry via pipx (PEP 668 compliant)
 command -v poetry >/dev/null 2>&1 || pipx install poetry
+pipx install pre-commit || pipx reinstall pre-commit
 
 # Install pyenv
 [[ -d "$HOME/.pyenv" ]] || curl -fsSL https://pyenv.run | bash
