@@ -1,0 +1,5 @@
+creation_rules:
+  - path_regex: '.*\.env\.enc$'
+    encrypted_regex: '^(.*)$'
+    age: >-
+      REPLACE_WITH_YOUR_AGE_PUBLIC_KEY

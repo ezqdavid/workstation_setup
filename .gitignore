@@ -1,0 +1,6 @@
+.venv/
+.env
+.env.*
+!.env.enc
+node_modules/
+.config/sops/age/keys.txt
