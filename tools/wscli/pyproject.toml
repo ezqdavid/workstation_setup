@@ -1,0 +1,13 @@
+[project]
+name = "wscli"
+version = "0.1.0"
+description = "Workstation bootstrap CLI (project scaffolder + doctor)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "typer>=0.12",
+  "rich>=13.7",
+]
+
+[project.scripts]
+ws = "wscli.main:app"
