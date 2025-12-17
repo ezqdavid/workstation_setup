@@ -12,6 +12,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Source nvm
 # shellcheck disable=SC1090
+# shellcheck disable=SC1091
 . "$NVM_DIR/nvm.sh"
 
 # Install + use latest LTS

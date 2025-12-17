@@ -50,7 +50,7 @@ fi
 BASHRC="$HOME/.bashrc"
 touch "$BASHRC"
 grep -qs 'SOPS_AGE_KEY_FILE' "$BASHRC" || \
-  echo 'export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/keys.txt"' >> "$BASHRC"
+echo "export SOPS_AGE_KEY_FILE=\"\$HOME/.config/sops/age/keys.txt\"" >> "$BASHRC"
 
 echo "Secrets ready: sops + age + gitleaks"
 echo "Age public key:"

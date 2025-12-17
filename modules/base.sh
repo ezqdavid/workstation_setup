@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends \
   ca-certificates curl wget gnupg lsb-release software-properties-common \
@@ -12,4 +13,5 @@ mkdir -p "$HOME/.local/bin"
 command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1 && ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"
 command -v batcat >/dev/null 2>&1 && ! command -v bat >/dev/null 2>&1 && ln -sf "$(command -v batcat)" "$HOME/.local/bin/bat"
 
-grep -qs 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.profile" || echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.profile"
+# Ensure ~/.local/bin is in PATH for interactive shells
+grep -qs "export PATH=\"\$HOME/.local/bin:\$PATH\"" "$HOME/.profile" || echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> "$HOME/.profile"
